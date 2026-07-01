@@ -14,7 +14,7 @@ export default function EditTaskModal({ task, closeModal }) {
     const fetchUsers = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/api/users",
+          "https://timeline-management-app-bsqm.onrender.com/api/users",
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,

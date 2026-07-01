@@ -78,7 +78,7 @@ export default function AdminDashboard() {
         const token = localStorage.getItem("token");
 
         const usersRes = await axios.get(
-          "http://localhost:5000/api/stats/users",
+          "https://timeline-management-app-bsqm.onrender.com/api/stats/users",
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ export default function AdminDashboard() {
         );
 
         const tasksRes = await axios.get(
-          "http://localhost:5000/api/stats/tasks",
+          "https://timeline-management-app-bsqm.onrender.com/api/stats/tasks",
           {
             headers: {
               Authorization: `Bearer ${token}`,

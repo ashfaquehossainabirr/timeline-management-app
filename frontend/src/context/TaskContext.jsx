@@ -2,7 +2,7 @@ import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const TaskContext = createContext();
-const API = "http://localhost:5000/api/tasks";
+const API = "https://timeline-management-app-bsqm.onrender.com/api/tasks";
 
 export const TaskProvider = ({ children }) => {
   const [tasks, setTasks] = useState([]);

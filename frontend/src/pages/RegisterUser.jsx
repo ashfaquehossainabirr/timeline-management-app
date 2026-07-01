@@ -16,7 +16,7 @@ export default function RegisterUser({ closeModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:5000/api/users/create", {
+    const res = await fetch("https://timeline-management-app-bsqm.onrender.com/api/users/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
