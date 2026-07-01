@@ -1,0 +1,831 @@
+/* ===============================
+   Global Reset & Variables
+================================ */
+:root {
+  --white-color: #ffffff;
+  --bg-main: #f3f5fb;
+  --card-bg: #ffffff;
+  --primary: #6366f1;
+  --secondary: #8b5cf6;
+  --success: #22c55e;
+  --warning: #facc15;
+  --danger: #ef4444;
+  --text-dark: #111827;
+  --text-muted: #6b7280;
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --shadow-soft: 0 10px 25px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+}
+
+/* ===============================
+   Page Container
+================================ */
+.container {
+  min-height: 100vh;
+  padding: 32px;
+  /* background: linear-gradient(180deg, #eef2ff, #f9fafb); */
+}
+
+/* ===============================
+   Header UI
+================================ */
+
+.header {
+  background: linear-gradient(135deg, #1e3a8a, #4338ca);
+  padding: 22px 26px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  box-shadow: 0 18px 40px rgba(30, 58, 138, 0.45);
+  margin-bottom: 30px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* ===============================
+   Header Left Text
+================================ */
+.header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.header-text h2 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.header-text p {
+  font-size: 14px;
+  color: #e0e7ff;
+  margin: 0;
+}
+
+.header-text span {
+  color: #c7d2fe;
+  font-weight: 600;
+}
+
+/* ===============================
+   Avatar
+================================ */
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  backdrop-filter: blur(8px);
+}
+
+/* ===============================
+   Logout Button
+================================ */
+.logout-btn {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.45);
+  transition: all 0.25s ease;
+}
+
+/* Hover */
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 35px rgba(239, 68, 68, 0.6);
+}
+
+/* Active (click) */
+.logout-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 14px rgba(239, 68, 68, 0.45);
+}
+
+/* Optional icon style */
+.logout-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ===============================
+   Stats Section
+================================ */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #ffffff, #f9fafb);
+  padding: 26px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(99, 102, 241, 0.15),
+    transparent
+  );
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.stat-card:hover::after {
+  opacity: 1;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.stat-card h3 {
+  margin-bottom: 8px;
+  font-size: 15px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.stat-card p {
+  font-size: 34px;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.stat-card.todo {
+  border-left: 5px solid orange;
+}
+
+.stat-card.in-progress {
+  border-left: 5px solid blue;
+}
+
+.stat-card.done {
+  border-left: 5px solid green;
+}
+
+/* ===============================
+   Chart Section
+================================ */
+.chart-container {
+  width: 100%;
+  min-height: 480px;
+
+  background:
+    linear-gradient(180deg, #ffffff, #f9fafb);
+
+  border-radius: 22px;
+  padding: 36px 32px 32px;
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+
+/* Subtle background glow */
+.chart-container::before {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -30%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.08),
+    transparent 60%
+  );
+  z-index: 0;
+}
+
+/* Chart title */
+.chart-container h3 {
+  position: relative;
+  z-index: 1;
+
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-dark);
+
+  margin-bottom: 28px;
+  letter-spacing: 0.3px;
+}
+
+/* Make canvas responsive & centered */
+.chart-container canvas {
+  position: relative;
+  z-index: 1;
+
+  max-width: 380px !important;
+  max-height: 380px !important;
+}
+
+/* ===============================
+   Buttons
+================================ */
+.add-task-btn {
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  border: none;
+  padding: 14px 22px;
+  border-radius: var(--radius-md);
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.add-task-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 25px rgba(99, 102, 241, 0.4);
+}
+
+/* ===============================
+   Task Grid
+================================ */
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* ===============================
+   Empty State
+================================ */
+.no-task-box {
+  background: linear-gradient(135deg, #ffffff, #f9fafb);
+  padding: 50px;
+  border-radius: var(--radius-lg);
+  text-align: center;
+  color: var(--text-muted);
+  box-shadow: var(--shadow-soft);
+}
+
+.no-task-box h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: var(--text-dark);
+}
+
+/* ===============================
+   Modal Overlay
+================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* ===============================
+   Modal Content
+================================ */
+.modal-content {
+  background: var(--card-bg);
+  width: 440px;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.35s ease;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.modal-header h3 {
+  margin: 0;
+  color: var(--text-dark);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: 0.2s;
+}
+
+.close-btn:hover {
+  color: var(--white-color);
+}
+
+/* ===============================
+   Animations
+================================ */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===============================
+   Responsive
+================================ */
+
+@media (max-width: 804px) {
+  .stat-card {
+    flex: 1 1 220px;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 20px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .chart-container {
+    height: 360px;
+  }
+
+  .modal-content {
+    width: 90%;
+  }
+
+  .stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 400px) {
+  .stat-card {
+    flex: 1 1 100%;
+  }
+}
+
+/* ===============================
+   Chart + Task Layout
+================================ */
+.chart-task-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+/* ===============================
+   Chart
+================================ */
+.chart-wrapper {
+  height: 320px;
+}
+
+/* ===============================
+   Pending Tasks Panel
+================================ */
+.pending-task-panel {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.pending-task-panel h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.pending-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  max-height: 405px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Custom scrollbar for pending tasks */
+.pending-task-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.pending-task-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.pending-task-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.pending-task-list::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ===============================
+   Task Item
+================================ */
+.pending-task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f9fafb;
+  transition: all 0.25s ease;
+}
+
+.pending-task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.pending-task-item h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 4px;
+}
+
+/* ===============================
+   Status Badge
+================================ */
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.badge.todo {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.badge.in-progress {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+/* ===============================
+   Priority Badge
+================================ */
+.priority {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.priority.low {
+  background: #ecfdf5;
+  color: #16a34a;
+}
+
+.priority.medium {
+  background: #fef9c3;
+  color: #a16207;
+}
+
+.priority.high {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+/* ===============================
+   Empty State
+================================ */
+.empty-text {
+  color: #6b7280;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 900px) {
+  .chart-task-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ===============================
+   Employee Breakdown
+================================ */
+.employee-breakdown {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+.employee-breakdown h3 {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #111827;
+}
+
+/* Grid */
+.employee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+/* Task Breakdown */
+.task-breakdown {
+  max-height: 385px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Custom scrollbar for task breakdown */
+.task-breakdown::-webkit-scrollbar {
+  width: 6px;
+}
+
+.task-breakdown::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.task-breakdown::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.task-breakdown::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Due Tasks */
+.due-task {
+  max-height: 432px;
+  overflow-y: auto;
+  padding-right: 6px;
+}
+
+/* Custom scrollbar for task breakdown */
+.due-task::-webkit-scrollbar {
+  width: 6px;
+}
+
+.due-task::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.due-task::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.due-task::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* Card */
+.employee-card {
+  background: linear-gradient(135deg, #f9fafb, hsl(0, 0%, 99%));
+  padding: 20px;
+  border-radius: 16px;
+  transition: 0.25s ease;
+  /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05); */
+  border: 1px solid #c7e3ff;
+}
+
+.employee-card:hover {
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.employee-card h4 {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+/* Stats */
+.employee-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.employee-stats span {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* Status Colors */
+.employee-stats .todo {
+  background: #fff7ed;
+  color: #ea580c;
+}
+
+.employee-stats .in-progress {
+  background: #eff6ff;
+  color: #2563eb;
+}
+
+.employee-stats .done {
+  background: #ecfdf5;
+  color: #16a34a;
+}
+
+.employee-panel {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+  margin-bottom: 24px;
+}
+
+.employee-panel h3 {
+  margin-bottom: 14px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* FLEX ROW + WRAP */
+.employee-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.employee-panel .employee-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.employee-btn {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  color: #000;
+  background: #f3f4f6;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.25s;
+  white-space: nowrap;
+}
+
+.employee-btn:hover {
+  background: #e0e7ff;
+}
+
+.employee-btn.active {
+  background: #6366f1;
+  color: white;
+}
+
+/* Confirm Logout Modal */
+.confirm-logout {
+  max-width: 360px;
+  text-align: center;
+}
+
+.confirm-logout h3 {
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.confirm-logout p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.confirm-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.cancel-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  color: #000;
+  background: #e5e7eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cancel-btn:hover {
+  background: #d1d5db;
+}
+
+.confirm-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #ff4d4f, #ff7875);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confirm-btn:hover {
+  background: linear-gradient(135deg, #ff4d4f, #ff4d4f);
+}
+
+/* Upcoming Deadline Task Card */
+.employee-stats > div {
+  margin-bottom: 8px;
+}
+
+/* Custom scrollbar for deadline tasks */
+.deadline-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.deadline-list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.deadline-list::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 10px;
+}
+
+.deadline-list::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}

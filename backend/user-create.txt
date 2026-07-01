@@ -1,0 +1,8 @@
+http://localhost:5000/api/auth/register
+
+{
+  "name": "Abir",
+  "email": "abir@admin.com",
+  "password": "123456",
+  "role": "manager"
+}

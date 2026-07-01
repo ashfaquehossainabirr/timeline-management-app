@@ -1,0 +1,157 @@
+/* Reset */
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Page background */
+.login-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App title */
+.app-title {
+  color: #ffffff;
+  margin-bottom: 20px;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+/* Login card */
+.login-box {
+  background: #ffffff;
+  width: 360px;
+  padding: 35px;
+  border-radius: 14px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Heading */
+.login-box h2 {
+  text-align: center;
+  color: #333;
+}
+
+/* Subtitle */
+.subtitle {
+  text-align: center;
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* Error */
+.error {
+  background: #ffe5e5;
+  color: #d8000c;
+  padding: 8px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+/* Inputs */
+.login-box input {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.login-box input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+}
+
+/* Button */
+.login-box button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.login-box button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile responsive */
+@media (max-width: 420px) {
+  .login-box {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .app-title {
+    font-size: 26px;
+  }
+}
+
+/* ===============================
+   Loading Button
+================================ */
+
+.login-box button:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+}
+
+/* Button loading layout */
+.btn-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+
+/* Spinner */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

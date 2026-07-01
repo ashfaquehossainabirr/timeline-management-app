@@ -1,0 +1,146 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  /* background: #1e1e2f; */
+  color: #000;
+  width: 420px;
+  max-width: 90%;
+  border-radius: 10px;
+  padding: 20px;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.task-details p {
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.remaining-days {
+  font-size: 13px;
+  color: #facc15;
+}
+
+.urgency-badge {
+  display: inline-block;
+  margin-bottom: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Urgent */
+.urgency-badge.urgent {
+  background: #dc2626;
+  color: white;
+  animation: pulse 1.2s infinite;
+}
+
+/* Warning */
+.urgency-badge.warning {
+  background: #facc15;
+  color: #1e1e2f;
+}
+
+/* Overdue */
+.urgency-badge.overdue {
+  background: #273759;
+  color: #fa9494;
+}
+
+/* Normal */
+.urgency-badge.normal {
+  background: #16a34a;
+  color: white;
+}
+
+/* Pulse animation for urgent */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 8px rgba(220, 38, 38, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.task-export-actions {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.task-export-actions button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background: #2563eb;
+  color: white;
+  font-size: 13px;
+}
+
+.task-export-actions button:hover {
+  opacity: 0.9;
+}
+
+/* PRINT MODE */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #task-details-print,
+  #task-details-print * {
+    visibility: visible;
+  }
+
+  #task-details-print {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+}
+
+.task-details {
+  font-size: 14px;
+  line-height: 1.6;
+}
