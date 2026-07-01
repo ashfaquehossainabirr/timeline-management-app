@@ -154,11 +154,11 @@ export default function TaskDetailsModal({ task, closeModal }) {
         </div>
 
         {/* ACTION BUTTONS */}
-        {/* <div className="task-export-actions">
+        <div className="task-export-actions">
           <button onClick={handlePrint}>🖨 Print</button>
           <button onClick={handleExportPDF}>📄 Export PDF</button>
           <button onClick={handleExportJSON}>📦 Export JSON</button>
-        </div> */}
+        </div>
 
         {/* URGENCY BADGE */}
         <span className={`urgency-badge ${urgency}`}>
