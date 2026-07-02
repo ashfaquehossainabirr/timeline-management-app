@@ -71,6 +71,7 @@ export default function AdminDashboard() {
   const [showRegister, setShowRegister] = useState(false);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -262,6 +263,14 @@ export default function AdminDashboard() {
       deadline.getFullYear() === tomorrow.getFullYear() &&
       deadline.getMonth() === tomorrow.getMonth() &&
       deadline.getDate() === tomorrow.getDate()
+    );
+  };
+
+  const filterByTitle = (taskList) => {
+    if (!searchQuery.trim()) return taskList;
+
+    return taskList.filter((task) =>
+      task.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
   };
 
@@ -585,20 +594,38 @@ export default function AdminDashboard() {
       </section>
 
       <section className="dashboard-section">
+        <div className="task-search-bar">
+          <input
+            type="text"
+            placeholder="🔍 Search tasks by title..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="task-search-input"
+          />
+        </div>
+      </section>
+
+      <section className="dashboard-section">
         <h3 style={{ marginTop: "24px", marginBottom: "16px" }}>All Tasks</h3>
 
         {/* Task List */}
         { tasks.length === 0 ? (
                 <div className="no-task-box">
                   <h3>📭 No assigned tasks</h3>
-                  <p>Please wait until admin assigns you a task.</p>
+                  <p>Please wait until admin/employee assigns a task.</p>
                 </div>
               ) : <div className="task-grid">
-                    {tasks.map((task) => (
+                    {filterByTitle(tasks).map((task) => (
                       <TaskCard key={task._id} task={task} />
                     ))}
                   </div>
         }
+
+        {filterByTitle(tasks).length === 0 && (
+          <div className="no-task-box">
+            <p className="empty-text">❌ No matching tasks found</p>
+          </div>
+        )}
       </section>
 
 

@@ -829,3 +829,22 @@
 .deadline-list::-webkit-scrollbar-thumb:hover {
   background: #9ca3af;
 }
+
+.task-search-bar {
+  margin-top: 40px;
+  margin-bottom: 16px;
+}
+
+.task-search-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  outline: none;
+}
+
+.task-search-input:focus {
+  border-color: #6366f1;
+}
