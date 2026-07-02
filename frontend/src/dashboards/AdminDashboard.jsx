@@ -72,6 +72,7 @@ export default function AdminDashboard() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -266,12 +267,17 @@ export default function AdminDashboard() {
     );
   };
 
-  const filterByTitle = (taskList) => {
-    if (!searchQuery.trim()) return taskList;
+  const filterTasks = (taskList) => {
+    return taskList.filter((task) => {
+      const matchesTitle = task.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
 
-    return taskList.filter((task) =>
-      task.title.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+      const matchesStatus =
+        statusFilter === "all" || task.status === statusFilter;
+
+      return matchesTitle && matchesStatus;
+    });
   };
 
   return (
@@ -593,15 +599,35 @@ export default function AdminDashboard() {
         )}
       </section>
 
-      <section className="dashboard-section">
-        <div className="task-search-bar">
-          <input
-            type="text"
-            placeholder="🔍 Search tasks by title..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="task-search-input"
-          />
+      <section className="dashboard-section task-filter-section">
+        <div className="task-filter-bar">
+          <div className="task-filter-container">
+            
+            {/* Search */}
+            <div className="search-box">
+              <input
+                type="text"
+                placeholder="Search tasks by title..."
+                className="task-search-input"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              <span className="search-icon">🔍</span>
+            </div>
+
+            {/* Status Filter */}
+            <select
+              className="status-filter"
+              value={statusFilter}
+              onChange={(e) => setStatusFilter(e.target.value)}
+            >
+              <option value="all">All Status</option>
+              <option value="todo">To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+
+          </div>
         </div>
       </section>
 
@@ -615,13 +641,13 @@ export default function AdminDashboard() {
                   <p>Please wait until admin/employee assigns a task.</p>
                 </div>
               ) : <div className="task-grid">
-                    {filterByTitle(tasks).map((task) => (
+                    {filterTasks(tasks).map((task) => (
                       <TaskCard key={task._id} task={task} />
                     ))}
                   </div>
         }
 
-        {filterByTitle(tasks).length === 0 && (
+        {filterTasks(tasks).length === 0 && (
           <div className="no-task-box">
             <p className="empty-text">❌ No matching tasks found</p>
           </div>

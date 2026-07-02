@@ -830,21 +830,104 @@
   background: #9ca3af;
 }
 
-.task-search-bar {
+.task-filter-section {
   margin-top: 40px;
-  margin-bottom: 16px;
+}
+
+/* ===============================
+   Task Filter Bar
+================================ */
+.task-filter-bar {
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+
+/* Container */
+.task-filter-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  background: linear-gradient(135deg, #ffffff, #f9fafb);
+  padding: 16px 18px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+/* ===============================
+   Search Box
+================================ */
+.search-box {
+  position: relative;
+  flex: 1;
+  width: 100%;
 }
 
 .task-search-input {
   width: 100%;
-  max-width: 420px;
-  padding: 10px 14px;
-  border-radius: 10px;
+  padding: 12px 42px 12px 16px;
+  border-radius: 999px;
   border: 1px solid #e5e7eb;
   font-size: 14px;
   outline: none;
+  transition: all 0.25s ease;
+  background: #ffffff;
 }
 
 .task-search-input:focus {
   border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* Search icon */
+.search-icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-78%);
+  font-size: 14px;
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+/* ===============================
+   Status Filter Dropdown
+================================ */
+.status-filter {
+  min-width: 180px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  font-size: 14px;
+  font-weight: 600;
+  background: #ffffff;
+  cursor: pointer;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.status-filter:hover {
+  background: #f3f4f6;
+}
+
+.status-filter:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 640px) {
+  .task-filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .status-filter {
+    width: 100%;
+  }
 }
