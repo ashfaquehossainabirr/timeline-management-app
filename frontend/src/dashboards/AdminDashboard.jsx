@@ -62,6 +62,20 @@ const centerTextPlugin = {
   },
 };
 
+function useDebounce(value, delay = 300) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 export default function AdminDashboard() {
   const [userCount, setUserCount] = useState(0);
   const [taskCount, setTaskCount] = useState(0);
@@ -72,6 +86,7 @@ export default function AdminDashboard() {
   const [selectedEmployee, setSelectedEmployee] = useState(null);
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
   const [statusFilter, setStatusFilter] = useState("all");
 
   useEffect(() => {
@@ -271,7 +286,7 @@ export default function AdminDashboard() {
     return taskList.filter((task) => {
       const matchesTitle = task.title
         .toLowerCase()
-        .includes(searchQuery.toLowerCase());
+        .includes(debouncedSearchQuery.toLowerCase());
 
       const matchesStatus =
         statusFilter === "all" || task.status === statusFilter;
@@ -616,16 +631,22 @@ export default function AdminDashboard() {
             </div>
 
             {/* Status Filter */}
-            <select
-              className="status-filter"
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-            >
-              <option value="all">All Status</option>
-              <option value="todo">To Do</option>
-              <option value="in-progress">In Progress</option>
-              <option value="done">Done</option>
-            </select>
+            <div className="filter-dp">
+              <select
+                  className="status-filter"
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                >
+                  <option value="all">All Status</option>
+                  <option value="todo">To Do</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="done">Done</option>
+                </select>
+
+                {searchQuery !== debouncedSearchQuery && (
+                  <span className="searching-indicator">Searching...</span>
+                )}
+            </div>
 
           </div>
         </div>

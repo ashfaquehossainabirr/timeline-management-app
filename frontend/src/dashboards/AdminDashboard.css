@@ -918,6 +918,38 @@
   box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
+.filter-dp {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ================================
+   Searching Indicator
+================================ */
+.searching-indicator {
+  font-size: 12px;
+  font-weight: 500;
+  color: #6366f1;
+  background: #eef2ff;
+  padding: 6px 12px;
+  border-radius: 999px;
+  animation: pulseFade 1.2s infinite;
+}
+
+/* Subtle pulse animation */
+@keyframes pulseFade {
+  0% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
 /* ===============================
    Responsive
 ================================ */
